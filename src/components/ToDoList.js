@@ -13,6 +13,7 @@ export default function ToDoList(props) {
 
     const [strike, setStrike] = React.useState(false)
     const checkboxChecked = () => {
+        // const updatedStrikedList = 
         strike ? setStrike(false) : setStrike(true)
     }
     const styles = {
@@ -24,7 +25,8 @@ export default function ToDoList(props) {
             {props.taskList.map((item) => {
                 return (
                 <div key = {item.key} className="todolist-div">
-                    <input type="checkbox" className="list-checkbox" onChange={checkboxChecked}></input>
+                    <input type="checkbox" className="list-checkbox" onChange={() => checkboxChecked()}>
+                    </input>
                     <p style={styles}>{item.object}</p>
                     <button onClick={()=>deleteTaskListItem(item.key)} className="delete-button">X</button>
                 </div>
