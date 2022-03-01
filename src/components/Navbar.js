@@ -3,12 +3,14 @@ import "../App.css"
 
 export default function Navbar() {
     return (
-        <nav>
-            <ul className="image-ul">
-                <li>
-                    To-do-ist
-                </li>
-            </ul>
-        </nav>
+        <div className="nav-div">
+            <nav>
+                <ul className="nav-ul">
+                    <li>
+                        To-Do-ist
+                    </li>
+                </ul>
+            </nav>
+        </div>
     )
 }
