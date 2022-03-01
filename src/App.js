@@ -11,10 +11,13 @@ export default function TodoInput() {
   const inputValue = e => {
       setTask(e.target.value)
   }
+  
+  const [viewTaskList, setViewTaskList] = React.useState(true)
 
   const updateTaskList = () => {
     setTaskList([...taskList, {object: task, key: Date.now()}])
     setTask('')
+    setViewTaskList(false)
   }
 
     return (
@@ -23,10 +26,26 @@ export default function TodoInput() {
           <header>
             <div className="todolist-border">
                 <div className="todo-input-form">
-                    <input className = "inputText" placeholder="Add Task" value={task} onChange = {inputValue}/>
+                    <input 
+                    className = "inputText" 
+                    placeholder="Add Task" 
+                    value={task} 
+                    onChange = {inputValue}
+                    />
                     <button onClick = {updateTaskList} className="todo-add-button">+</button>
                 </div>
-                    <ToDoList taskList = {taskList} setTaskList = {setTaskList} />
+                {
+                  viewTaskList
+                  ?
+                  <div className="pendingTasks-div">
+                      <img className = "pending-task-image" 
+                      src={require("./Images/pending-tasks.jpg")}
+                      alt="pending-tasks" />
+                      <p className="no-task-message">There are no task pending!! #Enjoy🥳🥳</p>
+                  </div>
+                  :
+                  <ToDoList taskList = {taskList} setTaskList = {setTaskList} />
+                }
             </div>
           </header>
       </div>
