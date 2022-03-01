@@ -10,26 +10,36 @@ body {
 
 }
 
-nav {
-  height: 3rem;
-  display: flex;
-  padding: 1.3rem 0rem;
-  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  background: white;
+.nav-div {
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-.image-ul {
+nav {
+  height: 2rem;
+  display: flex;
+  padding: 1.3rem 0rem;
+  box-shadow: 0px 2.98256px 17.4564px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  background: white;
+  margin: auto;
+  margin-top: 2rem;
+  vertical-align: middle;
+  border-radius: 3rem;
+}
+
+.nav-ul {
   display: flex;
   justify-content: flex-start;
   list-style: none;
   width: 100%;
   display: flex;
   align-items: center;
-  padding-left: 1rem;
 }
 
-.image-ul li {
+.nav-ul li {
   font-size: 3rem;
   font-weight: bold;
   font-family: Pompiere;
@@ -37,7 +47,6 @@ nav {
 }
 
 .todolist-border {
-  border: 2px solid black;
   justify-content: space-between;
   text-align: center;
   width: 35%;
@@ -46,6 +55,8 @@ nav {
   height: 28rem;
   overflow: auto;
   border-radius: 0.5rem;
+  box-shadow: 1px 2.98256px 17.4564px rgba(18, 178, 218, 0.1);
+  background: white;
 }
 
 ::-webkit-scrollbar {
@@ -112,6 +123,28 @@ nav {
   transition: 0.2s;
 }
 
+.pending-task-image {
+  padding-top: 2.5rem;
+  height: 15rem;
+
+}
+
+/* .addTask-button {
+  background-color: #ecc3c3;
+  border: 1px solid black;
+  padding: 0.7rem 1rem;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+} */
+
+.no-task-message {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-family: Montserrat;
+}
+
 .todolist-div {
   display: flex;
   text-align: center;
@@ -119,14 +152,13 @@ nav {
   justify-content: space-between;
   font-size: 1.5rem;
   font-family: Montserrat;
-  /* border: 1px solid black; */
   width: 90%;
   margin: auto;
   vertical-align: middle;
   border-radius: 2rem;
   margin-bottom: 1rem;
-  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
-  background: rgb(243, 248, 242);
+  box-shadow: 3px 2.98256px 10.4564px rgba(0, 0, 0, 0.1);
+  /* background: rgb(243, 248, 242); */
 }
 
 .list-checkbox {
