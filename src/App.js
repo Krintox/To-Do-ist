@@ -39,7 +39,7 @@ export default function TodoInput() {
                   ?
                   <div className="pendingTasks-div">
                       <img className = "pending-task-image" 
-                      src={require("./Images/pending-tasks.jpg")}
+                      src= "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/image/rDtN98Qoishumwih/task-pending-cartoon-bussiness-vector-illustrations_zJCs81OO_SB_PM.jpg"
                       alt="pending-tasks" />
                       <p className="no-task-message">There are no task pending!! #Enjoy🥳🥳</p>
                   </div>
