@@ -10,24 +10,16 @@ export default function ToDoList(props) {
         })
         props.setTaskList(updatedList)
     }
-
-    const [strike, setStrike] = React.useState(false)
-    const checkboxChecked = () => {
-        // const updatedStrikedList = 
-        strike ? setStrike(false) : setStrike(true)
-    }
-    const styles = {
-        textDecoration: strike ? "line-through" : "none" 
-    }
+    
 
     return(
         <div>
             {props.taskList.map((item) => {
                 return (
                 <div key = {item.key} className="todolist-div">
-                    <input type="checkbox" className="list-checkbox" onChange={() => checkboxChecked()}>
+                    <input type="checkbox" className="list-checkbox">
                     </input>
-                    <p style={styles}>{item.object}</p>
+                    <p>{item.object}</p>
                     <button onClick={()=>deleteTaskListItem(item.key)} className="delete-button">X</button>
                 </div>
                 )
