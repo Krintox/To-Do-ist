@@ -9,6 +9,7 @@ export default function ToDoList(props) {
             )
         })
         props.setTaskList(updatedList)
+        props.setCount(props.count - 1)
     }
     
 
