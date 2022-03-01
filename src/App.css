@@ -5,15 +5,18 @@
 }
 
 body {
-  background-color: white;
+  /* background-color: white; */
+  background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+
 }
 
 nav {
   height: 3rem;
   display: flex;
-  padding: 1.3rem 2rem;
+  padding: 1.3rem 0rem;
   box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
   width: 100%;
+  background: white;
 }
 
 .image-ul {
@@ -23,52 +26,73 @@ nav {
   width: 100%;
   display: flex;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .image-ul li {
   font-size: 3rem;
   font-weight: bold;
   font-family: Pompiere;
+  width: 100%;
 }
 
 .todolist-border {
-  border: 1px solid black;
+  border: 2px solid black;
   justify-content: space-between;
   text-align: center;
-  width: 33%;
+  width: 35%;
   margin: 3rem auto;
   vertical-align: middle;
   height: 28rem;
   overflow: auto;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-track {  
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b4848;
+  border-radius: 1.3rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #302828;
 }
 
 .todo-input-form {
   margin: auto;
   vertical-align: middle;
   justify-content: space-between;
-
+  align-items: center;
 }
 
 .inputText {
   height: 2.5rem;
   width: 78%;
   margin: 1rem;
+  margin-right: 0.5rem;
   vertical-align: middle;
   font-size: 1.5rem;
   font-family: Montserrat;
+  outline: none;
+  background: none;
+  border: 2px solid black;
+  border-radius: 0.8rem;
+  padding: 0 0.4rem;
+  align-items: center;
 }
 
 .todo-add-button {
-  /* padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
   background: none;
-  border: 1px solid black;
-  outline: none;
-  cursor: pointer;
-  height: 1.8rem;
-  border-radius: 50%; */
-  padding: 0.6rem 0.8rem;
-  background: none;
-  border: 1px solid black;
+  border: 2px solid black;
   outline: none;
   cursor: pointer;
   border-radius: 50%;
@@ -76,13 +100,14 @@ nav {
   margin-left: 0;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.3rem;
   align-items: center;
+  font-weight: bold;
 }
 
 .todo-add-button:hover {
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
   background-color: black;
   transition: 0.2s;
 }
@@ -101,6 +126,7 @@ nav {
   border-radius: 2rem;
   margin-bottom: 1rem;
   box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  background: rgb(243, 248, 242);
 }
 
 .list-checkbox {
@@ -133,4 +159,42 @@ nav {
   border: 1px solid white;
   background-color: black;
   transition: 0.2s;
+}
+
+@media (max-width: 1024px) {
+  .todolist-border {
+    width: 50%;
+    padding: 0%;
+  }
+  .todo-input-form {
+    /* justify-content: center; */
+    margin: 1rem 0;
+  }
+  .inputText {
+    width: 70%;
+    margin: auto;
+  }
+  .todo-add-button{
+    margin: 0%;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .todolist-border {
+    width: 80%;
+    padding: 0%;
+  }
+  .todo-input-form {
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .inputText {
+    width: 70%;
+    margin: 0%;
+  }
+  .todo-add-button{
+    margin: 0%;
+    margin-left: 1rem;
+  }
 }
