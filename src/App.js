@@ -10,25 +10,27 @@ export default function TodoInput() {
   const [taskList, setTaskList] = React.useState([])
   const [disable, setDisable] = React.useState(true)
 
-  const inputValue = e => {
-      setTask(e.target.value)
-      e.target.value === ''
-      ?
-      setDisable(true)
-      :
-      setDisable(false)
-  }
   
   const [viewTaskList, setViewTaskList] = React.useState(true)
-
+  
   const updateTaskList = () => {
     setTaskList([...taskList, {object: task, key: Date.now()}])
     setTask('')
     setViewTaskList(false)
     setCount(count + 1)
+    setDisable(true)
   }
+  
+  const inputValue = e => {
+      setTask(e.target.value)
 
-  console.log(count)
+      e.target.value === '' || task === '' || task.length === 0
+      ?
+      setDisable(true)
+      :
+      setDisable(false)
+  }
+  console.log(task.length)
 
     return (
       <div>
