@@ -1,25 +1,50 @@
 import React from "react";
-import ToDoList from "./components/ToDoList";
 import Navbar from './components/Navbar'
 import '../src/App.css'
 
 export default function TodoInput() {
 
+  const saveLocalTasks = () => {
+    let savedTasks = localStorage.getItem('tasks');
+    console.log(savedTasks)
+
+    if (savedTasks) {
+        return JSON.parse(localStorage.getItem('tasks'));
+    } else {
+        return [];
+    }
+}
+
   const [task, setTask] = React.useState('')
   const [count, setCount] = React.useState(0)
-  const [taskList, setTaskList] = React.useState([])
+  const [taskList, setTaskList] = React.useState(saveLocalTasks)
   const [disable, setDisable] = React.useState(true)
+  const [edit, setEdit] = React.useState(true)
+  const [isTaskEdit, setIsTaskEdit] = React.useState(null)
+
+  React.useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(taskList))
+ }, [taskList]);
 
   
-  const [viewTaskList, setViewTaskList] = React.useState(true)
-  
-  const updateTaskList = () => {
-    setTaskList([...taskList, {object: task, key: Date.now()}])
-    setTask('')
-    setViewTaskList(false)
-    setCount(count + 1)
-    setDisable(true)
+ const updateTaskList = () => {
+  if (task && !edit) {
+    setTaskList(
+      taskList.map((item) => {
+        if(item.key === isTaskEdit) {
+          return {...item, object: task}
+        }
+        return item
+      })
+    )
+  }else {
+  setTaskList([...taskList, {object: task, key: Date.now()}])
+  setTask('')
+  setCount(count + 1)
+  setDisable(true)
   }
+  // setEdit(true)
+}
   
   const inputValue = e => {
       setTask(e.target.value)
@@ -31,6 +56,29 @@ export default function TodoInput() {
       setDisable(false)
   }
   console.log(task.length)
+
+  const deleteTaskListItem = (key) => {
+    const updatedList = taskList.filter((item) => {
+        return (
+            item.key !== key
+        )
+    })
+    setTaskList(updatedList)
+    setCount(count - 1)
+  }
+
+  const editTask = (key) => {
+    let newTask = taskList.find((item) => {
+        return (
+          item.key === key
+        )
+    })
+    console.log(newTask)
+    setEdit(false)
+    setTask(newTask.object)
+    setIsTaskEdit(key)
+
+}
 
     return (
       <div>
@@ -44,20 +92,39 @@ export default function TodoInput() {
                     value={task} 
                     onChange = {inputValue}
                     />
-                    <button disabled = {disable} onClick = {updateTaskList} className="todo-add-button">+</button>
+                    {
+                      edit
+                      ?                      
+                      <button 
+                      disabled = {disable} 
+                      onClick = {updateTaskList} className="todo-add-button">
+                      +
+                      </button>
+                      :
+                      <button className="edit-button" onClick={updateTaskList}>
+                        <i className="fas fa-edit"></i>
+                      </button>
+                  }
                 </div>
-                {
-                  viewTaskList || count === 0
-                  ?
-                  <div className="pendingTasks-div">
-                      <img className = "pending-task-image" 
-                      src= "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/image/rDtN98Qoishumwih/task-pending-cartoon-bussiness-vector-illustrations_zJCs81OO_SB_PM.jpg"
-                      alt="pending-tasks" />
-                      <p className="no-task-message">There are no pending tasks!! #Enjoy🥳🥳</p>
+                  <div>
+                      {taskList.map((item) => {
+                          return (
+                              <div key = {item.key} className="todolist-div">
+                              <input type="checkbox" className="list-checkbox">
+                              </input>
+                              <p>{item.object}</p>
+                              <div>
+                                  <button className="edit-button" onClick={() => editTask(item.key)}>
+                                  <i className="fas fa-edit"></i>
+                                  </button>
+                                  <button onClick={()=>deleteTaskListItem(item.key)} className="delete-button">
+                                    X
+                                  </button>
+                              </div>
+                          </div>
+                          )
+                      })}
                   </div>
-                  :
-                  <ToDoList count = {count} setCount = {setCount} task = {task} taskList = {taskList} setTaskList = {setTaskList}/>
-                }
             </div>
           </header>
       </div>
