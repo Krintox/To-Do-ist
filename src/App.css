@@ -117,8 +117,8 @@ nav {
 }
 
 .todo-add-button:hover {
-  color: white;
-  border: 2px solid white;
+  color: rgba(173,252,234,1);
+  border: 2px solid black;
   background-color: black;
   transition: 0.2s;
 }
@@ -172,8 +172,26 @@ nav {
   padding: 0.5rem;
 }
 
+.edit-button {
+  background: none;
+  border: 1px solid black;
+  padding: 0.6rem 0.6rem;
+  font-size: 1rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  color: rgba(173,252,234,1);
+  background: black;
+}
+
 .delete-button {
-  padding: 0.6rem 0.7rem;
+  padding: 0.6rem 0.8rem;
   background: none;
   border: 1px solid black;
   outline: none;
@@ -187,9 +205,47 @@ nav {
 }
 
 .delete-button:hover {
-  color: white;
-  border: 1px solid white;
+  color: rgba(173,252,234,1);
+  border: 1px solid black;
   background-color: black;
+  transition: 0.2s;
+}
+
+.updateTask-div {
+  position: relative;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+  border: 1px solid black;
+  width: 80%;
+  vertical-align: middle;
+}
+
+.updateTask-input {
+  height: 2.5rem;
+  width: 70%;
+  margin: 3rem;
+  border: 2px solid black;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  padding: 0 0.4rem;
+  font-family: Montserrat;
+}
+
+.update-button{
+  background-color: white;
+  font-family: Monstserrat;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  margin: 1rem;
+}
+
+.update-button:hover {
+  background: black;
+  color: rgba(173,252,234,1);
   transition: 0.2s;
 }
 
