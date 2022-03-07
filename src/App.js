@@ -16,7 +16,6 @@ export default function TodoInput() {
 }
 
   const [task, setTask] = React.useState('')
-  const [count, setCount] = React.useState(0)
   const [taskList, setTaskList] = React.useState(saveLocalTasks)
   const [disable, setDisable] = React.useState(true)
   const [edit, setEdit] = React.useState(true)
@@ -28,24 +27,23 @@ export default function TodoInput() {
 
   
  const updateTaskList = () => {
-  if (task && !edit) {
-    setTaskList(
-      taskList.map((item) => {
-        if(item.key === isTaskEdit) {
-          return {...item, object: task}
-        }
-        return item
-      })
-    )
-  }else {
-  setTaskList([...taskList, {object: task, key: Date.now()}])
-  setTask('')
-  setCount(count + 1)
-  setDisable(true)
-  }
-  // setEdit(true)
+   if (task && !edit) {
+     setEdit(true)
+     setTaskList(
+       taskList.map((item) => {
+         if(item.key === isTaskEdit) {
+           return {...item, object: task}
+          }
+          return item
+        })
+        )
+      }else {
+        setTaskList([...taskList, {object: task, key: Date.now(), completed: false}])
+        setTask('')
+        setDisable(true)
+      }
 }
-  
+
   const inputValue = e => {
       setTask(e.target.value)
 
@@ -64,7 +62,6 @@ export default function TodoInput() {
         )
     })
     setTaskList(updatedList)
-    setCount(count - 1)
   }
 
   const editTask = (key) => {
@@ -76,10 +73,22 @@ export default function TodoInput() {
     console.log(newTask)
     setEdit(false)
     setTask(newTask.object)
-    setIsTaskEdit(key)
+    setIsTaskEdit(key)    
+  }
+  const boxChecked = (key) => {
+    let checkedTask = [...taskList].map((item) => {
+      if (item.key === key) {
+        item.completed = !item.completed
+      }
+      return (
+        item
+      )  
+    })
+    setTaskList(checkedTask)
+  }
 
-}
-
+  const buttonAddEdit = edit ? "+" : <i className="fas fa-edit"></i>
+  
     return (
       <div>
           <Navbar />
@@ -91,26 +100,21 @@ export default function TodoInput() {
                     placeholder="Add a Task" 
                     value={task} 
                     onChange = {inputValue}
-                    />
-                    {
-                      edit
-                      ?                      
+                    />                                      
                       <button 
                       disabled = {disable} 
                       onClick = {updateTaskList} className="todo-add-button">
-                      +
-                      </button>
-                      :
-                      <button className="edit-button" onClick={updateTaskList}>
-                        <i className="fas fa-edit"></i>
-                      </button>
-                  }
+                      {buttonAddEdit}
+                      </button>                  
                 </div>
                   <div>
                       {taskList.map((item) => {
                           return (
                               <div key = {item.key} className="todolist-div">
-                              <input type="checkbox" className="list-checkbox">
+                              <input type="checkbox" className="list-checkbox" id="completed"
+                              checked = {item.completed}
+                              onChange={() => boxChecked(item.key)}
+                              >
                               </input>
                               <p>{item.object}</p>
                               <div>
