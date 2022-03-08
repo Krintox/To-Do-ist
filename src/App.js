@@ -27,8 +27,7 @@ export default function TodoInput() {
 
   
  const updateTaskList = () => {
-   if (task && !edit) {
-     setEdit(true)
+   if (task && edit === false) {
      setTaskList(
        taskList.map((item) => {
          if(item.key === isTaskEdit) {
@@ -37,7 +36,10 @@ export default function TodoInput() {
           return item
         })
         )
-      }else {
+        setEdit(true)
+        setTask('')
+        setIsTaskEdit(null)
+      } else {
         setTaskList([...taskList, {object: task, key: Date.now(), completed: false}])
         setTask('')
         setDisable(true)
@@ -87,7 +89,7 @@ export default function TodoInput() {
     setTaskList(checkedTask)
   }
 
-  const buttonAddEdit = edit ? "+" : <i className="fas fa-edit"></i>
+  // const buttonAddEdit = edit ? "+" : <i className="fas fa-edit"></i>
   
     return (
       <div>
@@ -104,7 +106,13 @@ export default function TodoInput() {
                       <button 
                       disabled = {disable} 
                       onClick = {updateTaskList} className="todo-add-button">
-                      {buttonAddEdit}
+                      {
+                      edit
+                      ?
+                      "+"
+                      :
+                      <span><i className="fas fa-edit"></i></span>
+                      }
                       </button>                  
                 </div>
                   <div>
